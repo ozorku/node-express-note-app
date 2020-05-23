@@ -1,0 +1,28 @@
+<div class="notepad">
+  <h2>
+    Notes
+  </h2>
+  <ul>
+    {{#each data}}
+      <li>
+        {{this.note}}
+        <form method="POST" action="deleteNote">
+          <button name="noteToDelete" value="{{this.note}}">
+            DELETE
+          </button>
+        </form>
+      </li>
+    {{/each}}
+  </ul>
+  <form class="new-note" method="POST" action="addNote">
+    <input
+      name="newNote"
+      placeholder="Write note here..."
+      type="text"
+      value=""
+    />
+    <button>
+      Add note
+    </button>
+  </form>
+</div>
