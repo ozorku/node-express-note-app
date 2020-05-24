@@ -6,11 +6,7 @@
     {{#each data}}
       <li>
         {{this.note}}
-        <form method="POST" action="deleteNote">
-          <button name="noteToDelete" value="{{this.note}}">
-            DELETE
-          </button>
-        </form>
+            <a href="/deleteNote/{{this.note}}">DELETE</a>
       </li>
     {{/each}}
   </ul>

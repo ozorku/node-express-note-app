@@ -40,10 +40,10 @@ app.post("/addNote", urlencodedParser, (req, res) => {
 });
 
 // Delete todo
-app.post("/deleteNote", urlencodedParser, (req, res) => {
+app.get("/deleteNote/:item", urlencodedParser, (req, res) => {
   let notes = readNotes();
   let updateNote = notes.filter((note) => {
-    return note.note !== req.body.noteToDelete;
+    return note.note !== req.params.item;
   });
   fs.writeFileSync(
     __dirname + "/public/notes.json",
