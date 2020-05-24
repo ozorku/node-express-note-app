@@ -60,6 +60,7 @@ app.delete("/deleteNote/:item", urlencodedParser, (req, res) => {
   res.send(readNotes());
 });
 
+// app listenong
 app.listen(port, () => {
   console.log(`listeneing on port ${port}`);
 });
