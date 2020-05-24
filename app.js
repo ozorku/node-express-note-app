@@ -61,6 +61,6 @@ app.delete("/deleteNote/:item", urlencodedParser, (req, res) => {
 });
 
 // app listenong
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`listeneing on port ${port}`);
 });
