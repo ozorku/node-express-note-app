@@ -34,6 +34,19 @@ app.post("/addNote", urlencodedParser, (req, res) => {
   res.send(readNotes());
 });
 
+// update note
+app.patch("/updateNote/:id", urlencodedParser, (req, res) => {
+  let notes = readNotes();
+  notes.map((note) => {
+    if (note.id == req.params.id) {
+      note.note = req.body.note;
+    }
+    return;
+  });
+  fs.writeFileSync(__dirname + "/public/notes.json", JSON.stringify(notes));
+  res.send(readNotes());
+});
+
 // Delete todo
 app.delete("/deleteNote/:item", urlencodedParser, (req, res) => {
   let notes = readNotes();

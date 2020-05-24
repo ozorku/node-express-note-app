@@ -30,6 +30,9 @@ ul {
 li {
   border-bottom: 1px dotted #aaa;
   padding: 10px 0;
+}
+
+.note-item {
   display: flex;
   justify-content: space-between;
 }
