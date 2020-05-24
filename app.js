@@ -40,16 +40,17 @@ app.post("/addNote", urlencodedParser, (req, res) => {
 });
 
 // Delete todo
-app.get("/deleteNote/:item", urlencodedParser, (req, res) => {
+app.delete("/deleteNote/:item", urlencodedParser, (req, res) => {
+  console.log(req.params.item);
   let notes = readNotes();
-  let updateNote = notes.filter((note) => {
-    return note.note !== req.params.item;
+  let updatedNote = notes.filter((note) => {
+    return note.id != req.params.item;
   });
   fs.writeFileSync(
     __dirname + "/public/notes.json",
-    JSON.stringify(updateNote)
+    JSON.stringify(updatedNote)
   );
-  res.redirect("/");
+  res.send(readNotes());
 });
 
 app.listen(port, () => {

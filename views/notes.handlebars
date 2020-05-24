@@ -6,7 +6,7 @@
     {{#each data}}
       <li>
         {{this.note}}
-            <a href="/deleteNote/{{this.note}}">DELETE</a>
+            <button class="deleteNote" value={{this.id}}>DELETE</button>
       </li>
     {{/each}}
   </ul>
