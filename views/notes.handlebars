@@ -5,18 +5,23 @@
   <ul>
     {{#each data}}
       <li>
-        {{this.note}}
-            <button class="deleteNote" value={{this.id}}>DELETE</button>
+        <div class="note-item">
+          <span class="note-message">{{this.note}}</span>
+          <button class="deleteNote" value={{this.id}}>
+            DELETE
+          </button>
+        </div>
+        <div id="edit-note" style="display: none;">
+          <input type="text" name="editnote" value="{{this.note}}" />
+           <button class="updateNote" value={{this.id}}>
+            UPDATE
+          </button>
+        </div>
       </li>
     {{/each}}
   </ul>
-    <input
-      id="newNote"
-      placeholder="Write note here..."
-      type="text"
-      value=""
-    />
-    <button class="addNewNote">
-      Add note
-    </button>
+  <input id="newNote" placeholder="Write note here..." type="text" value="" />
+  <button class="addNewNote">
+    Add note
+  </button>
 </div>
