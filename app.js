@@ -3,6 +3,7 @@ const app = express();
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const fs = require("fs");
+const uniqid = require("uniqid");
 
 const port = 3000;
 
@@ -28,7 +29,7 @@ app.get("/", (req, res) => {
 // Add todo
 app.post("/addNote", urlencodedParser, (req, res) => {
   let notes = readNotes();
-  let newNote = { id: notes.length + 1, note: req.body.newNote };
+  let newNote = { id: uniqid(), note: req.body.newNote };
   notes.push(newNote);
   fs.writeFileSync(__dirname + "/public/notes.json", JSON.stringify(notes));
   res.send(readNotes());
@@ -62,5 +63,5 @@ app.delete("/deleteNote/:item", urlencodedParser, (req, res) => {
 
 // app listenong
 app.listen(process.env.PORT || port, () => {
-  console.log(`listeneing on port ${port}`);
+  console.log(`listening on port ${port}`);
 });
