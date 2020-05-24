@@ -6,23 +6,17 @@
     {{#each data}}
       <li>
         {{this.note}}
-        <form method="POST" action="deleteNote">
-          <button name="noteToDelete" value="{{this.note}}">
-            DELETE
-          </button>
-        </form>
+            <button class="deleteNote" value={{this.id}}>DELETE</button>
       </li>
     {{/each}}
   </ul>
-  <form class="new-note" method="POST" action="addNote">
     <input
-      name="newNote"
+      id="newNote"
       placeholder="Write note here..."
       type="text"
       value=""
     />
-    <button>
+    <button class="addNewNote">
       Add note
     </button>
-  </form>
 </div>

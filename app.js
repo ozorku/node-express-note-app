@@ -27,29 +27,24 @@ app.get("/", (req, res) => {
 
 // Add todo
 app.post("/addNote", urlencodedParser, (req, res) => {
-  async function goWrite() {
-    let notes = readNotes();
-    let newNote = { id: notes.length + 1, note: req.body.newNote };
-    notes.push(newNote);
-    return fs.writeFileSync(
-      __dirname + "/public/notes.json",
-      JSON.stringify(notes)
-    );
-  }
-  goWrite().then(() => res.redirect("/"));
+  let notes = readNotes();
+  let newNote = { id: notes.length + 1, note: req.body.newNote };
+  notes.push(newNote);
+  fs.writeFileSync(__dirname + "/public/notes.json", JSON.stringify(notes));
+  res.send(readNotes());
 });
 
 // Delete todo
-app.post("/deleteNote", urlencodedParser, (req, res) => {
+app.delete("/deleteNote/:item", urlencodedParser, (req, res) => {
   let notes = readNotes();
-  let updateNote = notes.filter((note) => {
-    return note.note !== req.body.noteToDelete;
+  let updatedNote = notes.filter((note) => {
+    return note.id != req.params.item;
   });
   fs.writeFileSync(
     __dirname + "/public/notes.json",
-    JSON.stringify(updateNote)
+    JSON.stringify(updatedNote)
   );
-  res.redirect("/");
+  res.send(readNotes());
 });
 
 app.listen(port, () => {
